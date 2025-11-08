@@ -51,28 +51,6 @@ const aboutMe = {
             }, 1000);
         })
     },
-    counterEffect: function () {
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach((counter) => {
-            counter.innerText = '0';
-
-            const updateCounter = () => {
-                const target = +counter.getAttribute('data-target');
-
-                const c = +counter.innerText;
-
-                const increment = target / 250;
-
-                if (c < target) {
-                    counter.innerText = `${Math.ceil(c + increment)}`;
-                    setTimeout(updateCounter, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            }
-            updateCounter();
-        })
-    },
     typingEffect: function () {
         // Type Effect
         const typedText = document.querySelector('#typist-element');

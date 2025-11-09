@@ -16,7 +16,7 @@
         opacity: 0;
     }
     .project:hover .con{
-        background:var(--blue-color);
+        background:rgb(0,0,0,0.4);
         opacity: 1;
     }
     .project .con >h3{

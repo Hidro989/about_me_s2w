@@ -3,14 +3,14 @@ const aboutMe = {
         this.showAside();
         this.handlePanel();
         this.progressEffect();
-        this.counterEffect();
+        this.typingEffect();
+        this.handleSideBarMenu();
     },
     showAside: function () {
         let aside = document.querySelector('.aside');
         let bar = document.querySelector('.bar');
         let app = document.querySelector('.app');
         bar.onclick = function () {
-            console.log('clicked');
             if (bar.classList.contains('change') == false) {
                 aside.style.left = 0;
                 this.classList.toggle('change');
@@ -94,6 +94,17 @@ const aboutMe = {
 
         document.addEventListener("DOMContentLoaded", function () {
             if (textArray.length) setTimeout(type, newTextDelay + 250);
+        })
+    },
+    handleSideBarMenu: function () {
+        const menuItem = document.querySelectorAll("#navbar > ul > li");
+
+        menuItem.forEach((item) => {
+            item.addEventListener("click", () => {
+                const activeItem = document.querySelector("#navbar > ul > li.at");
+                activeItem.classList.remove("at");
+                item.classList.toggle("at");
+            });
         })
     }
 };

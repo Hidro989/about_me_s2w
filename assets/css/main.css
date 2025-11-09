@@ -29,7 +29,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 h1.name{
     font-family: "Playfair Display", Georgia, serif;
@@ -613,6 +613,7 @@ h1.name{
     margin-left: 10px;
 }
 .project{
+    display: block;
     height:300px;
     position:relative;
     margin-bottom: 30px;
@@ -647,7 +648,7 @@ h1.name{
 .project_icon span+span{
     margin-left:4px;
 }
-.con h3 a{
+.con h3 span{
     color: var(--white-color);
 }
 .con>span{
@@ -709,7 +710,7 @@ h1.name{
     height: 100px;
     background: #f2f3f7;
 }
-.contact-icon i{
+.contact-icon span{
     display:table-cell;
     vertical-align:middle;
     font-size:28px;

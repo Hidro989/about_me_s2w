@@ -3,29 +3,104 @@ const aboutMe = {
         this.showAside();
         this.handlePanel();
         this.typingEffect();
-        this.handleSideBarMenu();
         this.scrollspy();
     },
-    showAside: function () {
-        let bar = document.querySelector('.bar');
-        let app = document.querySelector('.app');
-        bar.onclick = function () {
-            if (bar.classList.contains('change') == false) {
-                this.classList.toggle('change');
-                app.classList.toggle('off');
-                document.body.style.overflow = "hidden";
-            } else {
-                document.body.style.overflow = "auto";
-                this.classList.toggle('change');
-                app.classList.toggle('off');
-            }
-        }
+    // showAside: function () {
+    //     let bar = document.querySelector('.bar');
+    //     let app = document.querySelector('.app');
+    //     const _this = this;
+    //     const menuItem = document.querySelectorAll("#navbar > ul > li");
 
+    //     menuItem.forEach((item) => {
+    //         item.addEventListener("click", () => {
+    //             const activeItem = document.querySelector("#navbar > ul > li.at");
+    //             activeItem.classList.remove("at");
+    //             const link = item.querySelector("a");
+    //             const linkHrefId = link.getAttribute("href").substring(1);
+    //             if (linkHrefId === "skills") {
+    //                 _this.progressEffect();
+    //             }
+    //             item.classList.toggle("at");
+
+    //             if (bar.classList.contains('change')) {
+    //                 document.body.style.overflow = "auto";
+    //                 bar.classList.toggle('change');
+    //                 app.classList.toggle('off');
+    //             }
+    //         });
+    //     })
+
+    //     bar.onclick = function () {
+    //         if (bar.classList.contains('change') == false) {
+    //             this.classList.toggle('change');
+    //             app.classList.toggle('off');
+    //             document.body.style.overflow = "hidden";
+    //         } else {
+    //             document.body.style.overflow = "auto";
+    //             this.classList.toggle('change');
+    //             app.classList.toggle('off');
+    //         }
+    //     }
+
+    //     app.addEventListener("click", (e) => {
+    //         if (!e.target.closest(".aside, .bar")) {
+    //             document.body.style.overflow = "auto";
+    //             bar.classList.toggle('change');
+    //             app.classList.toggle('off');
+    //         }
+    //     });
+    // },
+    showAside: function () {
+        // 1. DOM Queries: Lấy tất cả các phần tử cần thiết một lần
+        const bar = document.querySelector('.bar');
+        const app = document.querySelector('.app');
+        const navList = document.querySelector("#navbar > ul"); // Lấy thẻ UL cha
+        const _this = this;
+
+        // 2. Helper Function: Tạo một hàm duy nhất để bật/tắt mobile menu
+        const toggleMobileMenu = () => {
+            const isMenuOpening = !bar.classList.contains('change');
+
+            bar.classList.toggle('change');
+            app.classList.toggle('off');
+            document.body.style.overflow = isMenuOpening ? "hidden" : "auto";
+        };
+
+        // 3. Event Listener cho nút Bar (Hamburger Icon)
+        bar.addEventListener('click', toggleMobileMenu);
+
+        // 4. Event Delegation cho Menu Items
+        navList.addEventListener("click", (e) => {
+            // Chỉ xử lý khi click vào một thẻ <li>
+            const clickedLi = e.target.closest('li');
+            if (!clickedLi) return;
+
+            // Xóa class 'at' ở mục đang active (nếu có)
+            const currentActive = navList.querySelector("li.at");
+            if (currentActive) {
+                currentActive.classList.remove("at");
+            }
+
+            // Thêm class 'at' cho mục vừa click
+            clickedLi.classList.add("at");
+
+            // Gọi progressEffect cho mục "skills"
+            const link = clickedLi.querySelector("a");
+            if (link && link.getAttribute("href").substring(1) === "skills") {
+                _this.progressEffect();
+            }
+
+            // Nếu menu mobile đang mở, hãy đóng nó lại
+            if (bar.classList.contains('change')) {
+                toggleMobileMenu();
+            }
+        });
+
+        // 5. Event Listener để đóng menu khi click ra ngoài (lớp overlay)
         app.addEventListener("click", (e) => {
-            if (!e.target.closest(".aside, .bar")) {
-                document.body.style.overflow = "auto";
-                bar.classList.toggle('change');
-                app.classList.toggle('off');
+            // Chỉ đóng khi click vào chính lớp overlay, không phải các phần tử con
+            if (e.target === app) {
+                toggleMobileMenu();
             }
         });
     },
@@ -101,23 +176,6 @@ const aboutMe = {
 
         document.addEventListener("DOMContentLoaded", function () {
             if (textArray.length) setTimeout(type, newTextDelay + 250);
-        })
-    },
-    handleSideBarMenu: function () {
-        const _this = this;
-        const menuItem = document.querySelectorAll("#navbar > ul > li");
-
-        menuItem.forEach((item) => {
-            item.addEventListener("click", () => {
-                const activeItem = document.querySelector("#navbar > ul > li.at");
-                activeItem.classList.remove("at");
-                const link = item.querySelector("a");
-                const linkHrefId = link.getAttribute("href").substring(1);
-                if (linkHrefId === "skills") {
-                    _this.progressEffect();
-                }
-                item.classList.toggle("at");
-            });
         })
     },
     scrollspy: function () {

@@ -54,10 +54,10 @@ const aboutMe = {
         // 1. DOM Queries: Lấy tất cả các phần tử cần thiết một lần
         const bar = document.querySelector('.bar');
         const app = document.querySelector('.app');
-        const navList = document.querySelector("#navbar > ul"); // Lấy thẻ UL cha
+        const navList = document.querySelector("#navbar > ul");
         const _this = this;
 
-        // 2. Helper Function: Tạo một hàm duy nhất để bật/tắt mobile menu
+        // 2. Helper Function: Hàm duy nhất để bật/tắt mobile menu
         const toggleMobileMenu = () => {
             const isMenuOpening = !bar.classList.contains('change');
 
@@ -71,11 +71,10 @@ const aboutMe = {
 
         // 4. Event Delegation cho Menu Items
         navList.addEventListener("click", (e) => {
-            // Chỉ xử lý khi click vào một thẻ <li>
             const clickedLi = e.target.closest('li');
             if (!clickedLi) return;
 
-            // Xóa class 'at' ở mục đang active (nếu có)
+            // Xóa class 'at' ở mục đang active
             const currentActive = navList.querySelector("li.at");
             if (currentActive) {
                 currentActive.classList.remove("at");
@@ -90,15 +89,15 @@ const aboutMe = {
                 _this.progressEffect();
             }
 
-            // Nếu menu mobile đang mở, hãy đóng nó lại
             if (bar.classList.contains('change')) {
-                toggleMobileMenu();
+                setTimeout(() => {
+                    toggleMobileMenu();
+                }, 500);
             }
         });
 
         // 5. Event Listener để đóng menu khi click ra ngoài (lớp overlay)
         app.addEventListener("click", (e) => {
-            // Chỉ đóng khi click vào chính lớp overlay, không phải các phần tử con
             if (e.target === app) {
                 toggleMobileMenu();
             }

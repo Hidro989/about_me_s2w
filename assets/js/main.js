@@ -7,14 +7,15 @@ const aboutMe = {
         this.handleSideBarMenu();
     },
     showAside: function () {
-        let aside = document.querySelector('.aside');
         let bar = document.querySelector('.bar');
         let app = document.querySelector('.app');
         bar.onclick = function () {
             if (bar.classList.contains('change') == false) {
                 this.classList.toggle('change');
                 app.classList.toggle('off');
+                document.body.style.overflow = "hidden";
             } else {
+                document.body.style.overflow = "auto";
                 this.classList.toggle('change');
                 app.classList.toggle('off');
             }

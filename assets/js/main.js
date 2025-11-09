@@ -12,11 +12,9 @@ const aboutMe = {
         let app = document.querySelector('.app');
         bar.onclick = function () {
             if (bar.classList.contains('change') == false) {
-                // aside.style.left = 0;
                 this.classList.toggle('change');
                 app.classList.toggle('off');
             } else {
-                // aside.style.left = -100 + '%';
                 this.classList.toggle('change');
                 app.classList.toggle('off');
             }

@@ -109,7 +109,7 @@ h1.name{
 
 .app.off .main {
     transform: translateX(300px);
-    transition: all 0.2s;
+    /* transition: all 0.2s; */
 }
 
 .bar{

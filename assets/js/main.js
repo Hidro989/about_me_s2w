@@ -5,6 +5,7 @@ const aboutMe = {
         this.progressEffect();
         this.typingEffect();
         this.handleSideBarMenu();
+        this.scrollspy();
     },
     showAside: function () {
         let bar = document.querySelector('.bar');
@@ -105,6 +106,34 @@ const aboutMe = {
                 item.classList.toggle("at");
             });
         })
+    },
+    scrollspy: function () {
+        const sections = document.querySelectorAll("section");
+        const navLi = document.querySelectorAll("#navbar > ul > li");
+
+        const options = {
+            root: null, // quan sát trong viewport
+            rootMargin: "0px",
+            threshold: 0.6 // Kích hoạt khi 60% phần tử hiển thị
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLi.forEach(link => {
+                        link.classList.remove("at");
+                        const childLink = link.querySelector("a");
+                        if (childLink.getAttribute("href").substring(1) === entry.target.id) {
+                            link.classList.add("at");
+                        }
+                    });
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
     }
 };
 aboutMe.init();

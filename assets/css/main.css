@@ -517,7 +517,7 @@ h1.name{
     transition: all .8s;
 }
 .panel.at .panel-colapse{
-    max-height: 350px;
+    max-height: 500px;
 }
 
 .panel-body{
@@ -605,6 +605,7 @@ h1.name{
     font-size: 2rem;
 }
 .timeline-label span{
+    display: block;
     font-size:1.6rem;
     opacity: .4;
 }

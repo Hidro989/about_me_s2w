@@ -32,6 +32,10 @@
     .project:hover .con >span{
         transform:translate3d(0,0,0);
     }
+
+    .timeline-label span {
+        display: inline;
+    }
 }
 @media (min-width: 1113px) {
     .c{

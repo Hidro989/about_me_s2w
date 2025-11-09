@@ -53,7 +53,7 @@ const aboutMe = {
     typingEffect: function () {
         // Type Effect
         const typedText = document.querySelector('#typist-element');
-        const cusorSpan = document.querySelector('.typist-cusor');
+        const cursorSpan = document.querySelector('.typist-cursor');
         const textArray = typedText.dataset.typist.split(',');
         const typingDelay = 200;
         const erasingDelay = 100;
@@ -64,25 +64,25 @@ const aboutMe = {
 
         function type() {
             if (charIndex < textArray[textArrayIndex].length) {
-                if (!cusorSpan.classList.contains('typing')) cusorSpan.classList.add('typing');
+                if (!cursorSpan.classList.contains('typing')) cursorSpan.classList.add('typing');
                 typedText.textContent += textArray[textArrayIndex].charAt(charIndex);
                 charIndex++;
                 setTimeout(type, typingDelay);
             }
             else {
-                cusorSpan.classList.remove('typing');
+                cursorSpan.classList.remove('typing');
                 setTimeout(erase, newTextDelay);
             }
         }
 
         function erase() {
             if (charIndex > 0) {
-                if (!cusorSpan.classList.contains('typing')) cusorSpan.classList.add('typing');
+                if (!cursorSpan.classList.contains('typing')) cursorSpan.classList.add('typing');
                 typedText.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
                 charIndex--;
                 setTimeout(erase, erasingDelay);
             } else {
-                cusorSpan.classList.remove('typing');
+                cursorSpan.classList.remove('typing');
                 textArrayIndex++;
                 if (textArrayIndex >= textArray.length) textArrayIndex = 0;
                 setTimeout(type, typingDelay + 1100);

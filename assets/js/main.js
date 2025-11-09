@@ -5,51 +5,6 @@ const aboutMe = {
         this.typingEffect();
         this.scrollspy();
     },
-    // showAside: function () {
-    //     let bar = document.querySelector('.bar');
-    //     let app = document.querySelector('.app');
-    //     const _this = this;
-    //     const menuItem = document.querySelectorAll("#navbar > ul > li");
-
-    //     menuItem.forEach((item) => {
-    //         item.addEventListener("click", () => {
-    //             const activeItem = document.querySelector("#navbar > ul > li.at");
-    //             activeItem.classList.remove("at");
-    //             const link = item.querySelector("a");
-    //             const linkHrefId = link.getAttribute("href").substring(1);
-    //             if (linkHrefId === "skills") {
-    //                 _this.progressEffect();
-    //             }
-    //             item.classList.toggle("at");
-
-    //             if (bar.classList.contains('change')) {
-    //                 document.body.style.overflow = "auto";
-    //                 bar.classList.toggle('change');
-    //                 app.classList.toggle('off');
-    //             }
-    //         });
-    //     })
-
-    //     bar.onclick = function () {
-    //         if (bar.classList.contains('change') == false) {
-    //             this.classList.toggle('change');
-    //             app.classList.toggle('off');
-    //             document.body.style.overflow = "hidden";
-    //         } else {
-    //             document.body.style.overflow = "auto";
-    //             this.classList.toggle('change');
-    //             app.classList.toggle('off');
-    //         }
-    //     }
-
-    //     app.addEventListener("click", (e) => {
-    //         if (!e.target.closest(".aside, .bar")) {
-    //             document.body.style.overflow = "auto";
-    //             bar.classList.toggle('change');
-    //             app.classList.toggle('off');
-    //         }
-    //     });
-    // },
     showAside: function () {
         // 1. DOM Queries: Lấy tất cả các phần tử cần thiết một lần
         const bar = document.querySelector('.bar');
@@ -92,7 +47,7 @@ const aboutMe = {
             if (bar.classList.contains('change')) {
                 setTimeout(() => {
                     toggleMobileMenu();
-                }, 500);
+                }, 450);
             }
         });
 

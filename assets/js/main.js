@@ -2,7 +2,6 @@ const aboutMe = {
     init: function () {
         this.showAside();
         this.handlePanel();
-        this.progressEffect();
         this.typingEffect();
         this.handleSideBarMenu();
         this.scrollspy();
@@ -48,7 +47,7 @@ const aboutMe = {
                 bar.style.width = `${done}%`;
                 bar.style.opacity = 1;
                 spanBar.innerText = `${done}%`;
-            }, 1000);
+            }, 750);
         })
     },
     typingEffect: function () {
@@ -108,13 +107,14 @@ const aboutMe = {
         })
     },
     scrollspy: function () {
+        const _this = this;
         const sections = document.querySelectorAll("section");
         const navLi = document.querySelectorAll("#navbar > ul > li");
 
         const options = {
             root: null, // quan sát trong viewport
             rootMargin: "0px",
-            threshold: 0.6 // Kích hoạt khi 60% phần tử hiển thị
+            threshold: 0.7 // Kích hoạt khi 60% phần tử hiển thị
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -123,8 +123,12 @@ const aboutMe = {
                     navLi.forEach(link => {
                         link.classList.remove("at");
                         const childLink = link.querySelector("a");
-                        if (childLink.getAttribute("href").substring(1) === entry.target.id) {
+                        const currentSectionId = childLink.getAttribute("href").substring(1);
+                        if (currentSectionId === entry.target.id) {
                             link.classList.add("at");
+                            if (currentSectionId === "skills") {
+                                _this.progressEffect();
+                            }
                         }
                     });
                 }

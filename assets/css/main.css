@@ -6,7 +6,7 @@
     height:100vh;
     background: #f2f3f7;
     z-index: 10;
-    transition: all 0.4s;
+    transition: all 0.6s;
 }
 
 .app.off .aside{

@@ -102,8 +102,13 @@ h1.name{
     color: var(--blue-color);
 }
 
-.app.off .bar,
-.app.off .main{
+.app.off .bar {
+    /* transform: translateX(300px); */
+    left: 325px;
+    transition: all 0.4s;
+}
+
+.app.off .main {
     transform: translateX(300px);
     transition: all 0.4s;
 }

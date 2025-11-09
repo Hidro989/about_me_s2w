@@ -53,7 +53,7 @@ const aboutMe = {
 
         // 5. Event Listener để đóng menu khi click ra ngoài (lớp overlay)
         app.addEventListener("click", (e) => {
-            if (e.target === app) {
+            if (!e.target.closest(".aside, .bar") && app.classList.contains("off")) {
                 toggleMobileMenu();
             }
         });

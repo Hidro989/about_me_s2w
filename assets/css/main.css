@@ -6,6 +6,7 @@
     height:100vh;
     overflow-x: auto;
     background: #f2f3f7;
+    z-index: 10;
     transition: all 0.4s;
 }
 
@@ -101,6 +102,7 @@ h1.name{
 .app.off .bar,
 .app.off .main{
     transform: translateX(300px);
+    transition: all 0.4s;
 }
 
 .bar{

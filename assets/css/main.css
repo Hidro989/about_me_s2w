@@ -105,12 +105,12 @@ h1.name{
 .app.off .bar {
     /* transform: translateX(300px); */
     left: 325px;
-    transition: all 0.4s;
+    transition: all 0.3s;
 }
 
 .app.off .main {
     transform: translateX(300px);
-    transition: all 0.4s;
+    transition: all 0.3s;
 }
 
 .bar{

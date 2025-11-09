@@ -119,7 +119,7 @@ h1.name{
     top: 10px;
     cursor: pointer;
     z-index: 9999;
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
 .bar1, .bar2, .bar3{
@@ -127,7 +127,7 @@ h1.name{
     width: 30px;
     background:#333;
     margin: 8px 0;
-    transition:0.4s;
+    transition:0.3s;
 }
 .change .bar1{
     -webkit-transform: rotate(-45deg) translate(-9px, 6px);

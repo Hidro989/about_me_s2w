@@ -20,6 +20,14 @@ const aboutMe = {
                 app.classList.toggle('off');
             }
         }
+
+        app.addEventListener("click", (e) => {
+            if (!e.target.closest(".aside, .bar")) {
+                document.body.style.overflow = "auto";
+                bar.classList.toggle('change');
+                app.classList.toggle('off');
+            }
+        });
     },
     handlePanel: function () {
         const panels = document.querySelectorAll('.panel');

@@ -162,7 +162,7 @@ const aboutMe = {
             sections.forEach(section => {
                 // section.offsetTop là vị trí của section so với đầu trang.
                 // Trừ đi navbarHeight và một chút khoảng đệm để active chính xác hơn khi có header cố định.
-                const sectionTop = section.offsetTop - navbarHeight - 100;
+                const sectionTop = section.offsetTop - navbarHeight - 135;
                 if (scrollPosition >= sectionTop) {
                     currentSectionId = section.getAttribute("id");
                 }

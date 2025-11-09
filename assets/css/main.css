@@ -7,7 +7,7 @@
     background: #f2f3f7;
     overflow-y: auto;
     z-index: 10;
-    transition: all 0.6s;
+    transition: all 0.5s;
 }
 
 .app.off .aside{

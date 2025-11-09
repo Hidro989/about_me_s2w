@@ -96,12 +96,18 @@ const aboutMe = {
         })
     },
     handleSideBarMenu: function () {
+        const _this = this;
         const menuItem = document.querySelectorAll("#navbar > ul > li");
 
         menuItem.forEach((item) => {
             item.addEventListener("click", () => {
                 const activeItem = document.querySelector("#navbar > ul > li.at");
                 activeItem.classList.remove("at");
+                const link = item.querySelector("a");
+                const linkHrefId = link.getAttribute("href").substring(1);
+                if (linkHrefId === "skills") {
+                    _this.progressEffect();
+                }
                 item.classList.toggle("at");
             });
         })
@@ -110,34 +116,62 @@ const aboutMe = {
         const _this = this;
         const sections = document.querySelectorAll("section");
         const navLi = document.querySelectorAll("#navbar > ul > li");
+        const navbarHeight = document.getElementById("navbar").offsetHeight; // Lấy chiều cao của navbar để tính offset
 
-        const options = {
-            root: null, // quan sát trong viewport
-            rootMargin: "0px",
-            threshold: 0.7 // Kích hoạt khi 60% phần tử hiển thị
-        };
+        // Hàm tối ưu hóa (throttle) để ngăn việc gọi hàm liên tục khi scroll
+        // Giúp cải thiện hiệu suất đáng kể.
+        function throttle(func, limit) {
+            let inThrottle;
+            return function () {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLi.forEach(link => {
-                        link.classList.remove("at");
-                        const childLink = link.querySelector("a");
-                        const currentSectionId = childLink.getAttribute("href").substring(1);
-                        if (currentSectionId === entry.target.id) {
-                            link.classList.add("at");
-                            if (currentSectionId === "skills") {
-                                _this.progressEffect();
-                            }
-                        }
-                    });
+        // Hàm chính để kiểm tra vị trí và cập nhật class "at"
+        function updateActiveSection() {
+            let currentSectionId = "";
+            const scrollPosition = window.pageYOffset;
+
+            // Tìm section đang hiển thị trên màn hình
+            sections.forEach(section => {
+                // section.offsetTop là vị trí của section so với đầu trang.
+                // Trừ đi navbarHeight và một chút khoảng đệm để active chính xác hơn khi có header cố định.
+                const sectionTop = section.offsetTop - navbarHeight - 20;
+                if (scrollPosition >= sectionTop) {
+                    currentSectionId = section.getAttribute("id");
                 }
             });
-        }, options);
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+            // Cập nhật class "at" cho các mục menu
+            navLi.forEach(li => {
+                const link = li.querySelector("a");
+                const linkHrefId = link.getAttribute("href").substring(1);
+
+                if (linkHrefId === currentSectionId) {
+                    if (!li.classList.contains("at")) {
+                        li.classList.add("at");
+                        // Gọi hàm progressEffect chỉ khi section "skills" được active
+                        if (currentSectionId === "skills") {
+                            _this.progressEffect();
+                        }
+                    }
+                } else {
+                    li.classList.remove("at");
+                }
+            });
+        }
+
+        // Gọi hàm một lần khi tải trang để set trạng thái active ban đầu
+        updateActiveSection();
+
+        // Gán sự kiện scroll vào window, sử dụng hàm đã được tối ưu hóa
+        window.addEventListener("scroll", throttle(updateActiveSection, 100)); // 100ms là khoảng thời gian chờ
     }
 };
 aboutMe.init();

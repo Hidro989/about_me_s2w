@@ -203,9 +203,14 @@ h1.name{
 .read,
 .contact,
 .recent-work{
+    padding-top: 50px;
+    padding-bottom: 98px;
+}
+
+/* .recent-work{
     padding-top: 80px;
     padding-bottom: 128px;
-}
+} */
 .heading-meta{
     display: block;
     margin-bottom: 15px;
